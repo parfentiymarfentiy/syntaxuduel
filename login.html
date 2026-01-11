@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Вход — SyntaxDuel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="shared/auth.css">
+</head>
+<body>
+
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h1>Вход</h1>
+    <p class="auth-subtitle">С возвращением 👋</p>
+
+    <form id="loginForm">
+      <div class="input-group">
+        <input type="email" name="email" required>
+        <label>Электронная почта</label>
+      </div>
+
+      <div class="input-group">
+        <input type="password" name="password" required>
+        <label>Пароль</label>
+      </div>
+      <button class="auth-btn">Войти</button>
+    </form>
+    <p class="auth-footer">
+      Нет аккаунта? <a href="register.html">Регистрация</a>
+    </p>
+  </div>
+</div>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+
+  const email = e.target.email.value;
+  const password = e.target.password.value;
+
+  const res = await fetch("http://localhost:3000/api/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
+
+  const data = await res.json();
+
+  if (data.success) {
+    localStorage.setItem("user", JSON.stringify(data.user));
+    location.href = "main.html";
+  } else {
+    alert(data.error);
+  }
+});
+</script>
+
+</body>
+</html>

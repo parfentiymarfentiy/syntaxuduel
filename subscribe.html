@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SyntaxDuel — Премиум-подписка</title>
+  <meta name="description" content="Полный доступ ко всем 52 неделям уроков по Python, C# и JavaScript. Без рекламы, с бонусами и сертификатом.">
+  
+  <link rel="stylesheet" href="shared/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header style="padding-bottom: 100px;">
+    <h1>Премиум-подписка</h1>
+    <p class="subtitle">
+      Разблокируй все 52 недели уроков, бонусные задания, сертификаты и обучение без ограничений.<br>
+      <span class="highlight">Первая неделя всегда бесплатно — попробуй перед покупкой!</span>
+    </p>
+    <a href="main.html" style="margin-top: 30px; display: inline-block; color: #818cf8; font-size: 1.2rem;">← Вернуться на главную</a>
+  </header>
+
+  <section class="subscription-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto 100px; padding: 0 20px;">
+    
+    <!-- План 1 месяц -->
+    <div class="plan-card">
+      <div class="plan-header">
+        <h2>1 месяц</h2>
+        <p class="price">4.99 $</p>
+        <p class="per-month">~0.16 $ в день</p>
+      </div>
+      <div class="plan-body">
+        <ul>
+          <li>Полный доступ ко всем урокам</li>
+          <li>Все 52 недели по выбранному языку</li>
+          <li>Бонусные задания и проекты</li>
+          <li>Оффлайн-доступ (в разработке)</li>
+          <li>Отмена в любой момент</li>
+        </ul>
+        <button class="btn-buy" onclick="buySubscription(1)">Купить за 499 ₽</button>
+      </div>
+    </div>
+
+    <!-- План 3 месяца (популярный) -->
+<div class="plan-card popular">
+  <div class="popular-badge">ПОПУЛЯРНЫЙ</div>
+  <div class="plan-header">
+    <h2>3 месяца</h2>
+    <p class="price">9.99 $</p>
+    <p class="per-month">~0.11 $ в день <span class="save">Экономия 5.53 $</span></p>
+  </div>
+  <div class="plan-body">
+    <ul>
+      <li><strong>Всё из месячного плана +</strong></li>
+      <li>Сертификат по окончании курса</li>
+      <li>Приоритетная поддержка</li>
+      <li>Эксклюзивные мини-проекты</li>
+      <li>Доступ ко всем 3 языкам одновременно</li>
+    </ul>
+    <button class="btn-buy popular-btn" onclick="buySubscription(3)">Купить за 1299 ₽</button>
+  </div>
+</div>

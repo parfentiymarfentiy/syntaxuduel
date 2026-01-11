@@ -1,0 +1,320 @@
+:root {
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --secondary: #10b981;
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --text: #e2e8f0;
+  --text-light: #94a3b8;
+  --accent-purple: #a78bfa;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+header {
+  text-align: center;
+  padding: 80px 20px 60px;
+  background: radial-gradient(circle at top center, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+}
+
+h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #a78bfa, #818cf8, #60a5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: var(--text-light);
+  max-width: 800px;
+  margin: 0 auto 40px;
+}
+
+.highlight {
+  color: var(--accent-purple);
+  font-weight: 600;
+}
+
+.languages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+.lang-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.lang-card:hover {
+  transform: translateY(-20px) scale(1.03);
+  box-shadow: 0 30px 60px rgba(99, 102, 241, 0.4);
+}
+
+.card-header {
+  padding: 40px 30px 20px;
+  text-align: center;
+}
+
+.card-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.card-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.card-body {
+  padding: 30px;
+  text-align: center;
+}
+
+.card-body ul {
+  list-style: none;
+  text-align: left;
+  margin: 20px 0;
+}
+
+.card-body li {
+  padding: 8px 0;
+  position: relative;
+  padding-left: 25px;
+}
+
+.card-body li::before {
+  content: "✓";
+  color: var(--secondary);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.btn-start {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 14px 40px;
+  background: var(--secondary);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+  transition: all 0.3s;
+}
+
+.btn-start:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(16, 185, 129, 0.5);
+}
+
+footer {
+  text-align: center;
+  padding: 60px 20px 40px;
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+.footer-links a {
+  color: #818cf8;
+  text-decoration: none;
+  margin: 0 15px;
+}
+
+footer p {
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 3rem; }
+  .subtitle { font-size: 1.2rem; }
+  .card-header h2 { font-size: 2rem; }
+}
+
+.subscription-grid {
+  margin-bottom: 100px;
+}
+
+.plan-card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+  transition: all 0.4s;
+  position: relative;
+}
+
+.plan-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 30px 70px rgba(99, 102, 241, 0.5);
+}
+
+.plan-card.popular {
+  border: 3px solid #a78bfa;
+  transform: scale(1.05);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #a78bfa;
+  color: black;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1rem;
+  z-index: 10;
+}
+
+.plan-header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  padding: 40px 30px;
+  text-align: center;
+  color: white;
+}
+
+.plan-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 10px 0;
+}
+
+.per-month {
+  font-size: 1.3rem;
+  opacity: 0.9;
+}
+
+.save {
+  background: #10b981;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  margin-left: 10px;
+}
+
+.plan-body {
+  padding: 40px 30px;
+}
+
+.plan-body ul {
+  list-style: none;
+  margin-bottom: 40px;
+}
+
+.plan-body li {
+  padding: 12px 0;
+  padding-left: 30px;
+  position: relative;
+}
+
+.plan-body li::before {
+  content: "✓";
+  color: var(--secondary);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  font-size: 1.4rem;
+}
+
+.btn-buy {
+  width: 100%;
+  padding: 18px;
+  background: var(--secondary);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-buy:hover {
+  background: #059669;
+  transform: translateY(-3px);
+}
+
+.popular-btn {
+  background: #a78bfa;
+}
+
+.popular-btn:hover {
+  background: #9333ea;
+}
+
+
+/* ===== AUTH BUTTONS ===== */
+.auth-buttons {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  display: flex;
+  gap: 16px;
+  z-index: 10;
+}
+
+.auth-buttons a {
+  padding: 12px 26px;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.35s ease;
+  backdrop-filter: blur(10px);
+}
+
+/* Войти */
+.btn-login {
+  color: var(--text);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.btn-login:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Регистрация */
+.btn-register {
+  background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+  color: white;
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.5);
+}
+
+.btn-register:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 20px 50px rgba(167, 139, 250, 0.7);
+}

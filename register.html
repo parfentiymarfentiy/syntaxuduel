@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация — SyntaxDuel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="shared/auth.css">
+</head>
+<body>
+
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h1>Регистрация</h1>
+    <p class="auth-subtitle">Создай аккаунт 🌀</p>
+
+    <form id="registerForm">
+      <div class="input-group">
+        <input type="text" name="name" required>
+        <label>Имя или ник</label>
+      </div>
+
+      <div class="input-group">
+        <input type="email" name="email" required>
+        <label>Почта</label>
+      </div>
+
+      <div class="input-group">
+        <input type="password" name="password" required>
+        <label>Пароль</label>
+      </div>
+
+      <button class="auth-btn primary">Зарегистрироваться</button>
+    </form>
+
+    <p class="auth-footer">
+      Уже есть аккаунт? <a href="login.html">Войти</a>
+    </p>
+  </div>
+</div>
+
+<script>
+document.getElementById("registerForm").addEventListener("submit", async e => {
+  e.preventDefault();
+
+  const name = e.target.name.value;
+  const email = e.target.email.value;
+  const password = e.target.password.value;
+
+  // Проверка длины пароля
+  if (password.length < 8) {
+    alert("Пароль должен быть не менее 8 символов!");
+    return; // останавливаем отправку формы
+  }
+
+  const res = await fetch("http://localhost:3000/api/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, password })
+  });
+
+  const data = await res.json();
+
+  if (data.success) {
+    // Сохраняем данные пользователя из БД
+    localStorage.setItem("user", JSON.stringify(data.user));
+    location.href = "index.html";
+  } else {
+    alert(data.error);
+  }
+});
+</script>
+
+</body>
+</html>

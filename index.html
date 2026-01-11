@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SyntaxDuel — Выбери язык</title>
+  
+  <style>
+    :root {
+      --bg: #0f172a;
+      --primary: #6366f1;
+      --accent: #a78bfa;
+      --text: #e2e8f0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 4.5rem;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(90deg, #a78bfa, #818cf8, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    p.subtitle {
+      font-size: 1.6rem;
+      max-width: 720px;
+      margin-bottom: 3.5rem;
+      color: #94a3b8;
+    }
+
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      width: 100%;
+      max-width: 1100px;
+      padding: 0 20px;
+    }
+
+    .lang-btn {
+      background: rgba(99, 102, 241, 0.15);
+      border: 2px solid rgba(99, 102, 241, 0.3);
+      border-radius: 16px;
+      padding: 32px 24px;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      transition: all 0.35s ease;
+      backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lang-btn:hover {
+      transform: translateY(-8px);
+      background: rgba(99, 102, 241, 0.35);
+      border-color: #a78bfa;
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.35);
+    }
+
+    .lang-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Экран загрузки */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .sd-container {
+      position: relative;
+      width: 240px;
+      height: 240px;
+    }
+
+    .sd-letter {
+      position: absolute;
+      font-size: 8.5rem;
+      font-weight: 900;
+      color: transparent;
+      background: linear-gradient(45deg, #a78bfa, #818cf8, #60a5fa, #a78bfa);
+      background-size: 400%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: gradientFlow 4s linear infinite, chessMove 3.2s ease-in-out infinite;
+      text-shadow: 0 0 30px rgba(167, 139, 250, 0.7);
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 400% 50%; }
+    }
+
+    @keyframes chessMove {
+      0%, 100%   { transform: translate(0, 0); }
+      25%        { transform: translate(60px, 60px); }
+      50%        { transform: translate(0, 120px); }
+      75%        { transform: translate(-60px, 60px); }
+    }
+
+    .loading-text {
+      margin-top: 60px;
+      font-size: 1.8rem;
+      color: #94a3b8;
+      letter-spacing: 4px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 0.6; }
+      50%     { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <h1>SyntaxDuel</h1>
+    <p class="subtitle">Выбери язык интерфейса</p>
+
+    <div class="lang-grid">
+      <button class="lang-btn" data-lang="ru">Русский</button>
+      <button class="lang-btn" data-lang="uk">Українська</button>
+      <button class="lang-btn" data-lang="en">English</button>
+    </div>
+  </main>
+
+  <!-- Экран загрузки -->
+  <div id="loader">
+    <div class="sd-container">
+      <div class="sd-letter" style="top:0; left:0;">S</div>
+      <div class="sd-letter" style="top:0; right:0; animation-delay:0.4s;">D</div>
+    </div>
+    <div class="loading-text">Загрузка...</div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const lang = this.getAttribute('data-lang');
+
+        // Сохраняем выбор языка
+        localStorage.setItem('preferredLang', lang);
+
+        // Показываем красивый лоадер
+        const loader = document.getElementById('loader');
+        loader.style.display = 'flex';
+
+        // Через 3.5 секунды переходим на основной сайт
+        setTimeout(() => {
+          window.location.href = 'main.html'; // ← здесь основной сайт
+        }, 3500);
+      });
+    });
+  </script>
+</body>
+</html>
